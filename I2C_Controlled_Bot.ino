@@ -1,23 +1,33 @@
+#include <ArduinoJson.h>
+
 #include "gopingvin.h"
 #include "ControlParams.h"
+#include "CommandTask.h"
 #include "sonarTask.h"
 #include "timer.h"
 #include "timer_manager.h"
 #include <Wire.h>
 
+
 GoPingvin MyPin;
-Timer mainTimer;
+CommandTask mainCommand;
+Timer mainTimer(&mainCommand);
 TimerManager mainController(&mainTimer);
+
 
 void setup() {
   // put your setup code here, to run once:
   Wire.begin(8);
   Wire.onReceive(receiveEvent);
   Serial.begin(9600);
-  mainController.init();
+  
   MyPin.init();
   Serial.println(ControlParams::getMaxSpeed());
- 
+
+  mainCommand.setInterval(2000);
+  Serial.println(mainCommand.getInterval());
+
+  mainController.init();
 }
 
 void loop() {

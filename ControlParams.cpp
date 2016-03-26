@@ -4,9 +4,14 @@ int ControlParams::getMaxSpeed(){
   return MAX_SPEED;
 }
 
-ControlParams::ControlParams(int spd, int ang){
+ControlParams::ControlParams(){
+  this->currSpeed = 0;
+  this->angle = 0;
+}
+
+ControlParams::ControlParams(int spd, int angl){
   this->currSpeed = spd;
-  this->angle = ang;
+  this->angle = angl;
 }
 
 int ControlParams::getCurrSpeed(){

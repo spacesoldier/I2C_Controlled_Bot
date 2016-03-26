@@ -13,7 +13,8 @@ class ControlParams: public Param{
         static const int MAX_SPEED = 400;
       public:
         static int getMaxSpeed();
-        ControlParams(int,int);
+        ControlParams();
+        ControlParams(int spd,int angl);
         int getCurrSpeed();
         int getAngle();
         void setCurrSpeed(int newSpeed); // TODO: check the speed value
